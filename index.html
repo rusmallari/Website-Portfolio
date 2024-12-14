@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang = "en" dir="ltr">
+    <head>
+        <meta charset = "UTF-8">
+        <title> Website Portfolio </title>
+        <link rel="stylesheet" href="style.css"> </link>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"> </link>
+        <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
+    </head>
+<body>
+
+     <!-- navigation menu -->
+    <nav>
+        <div class = "nav-container">
+            <div class = "logo">
+                <span>Russel Mallari's Portfolio</span>
+            </div>
+                <div class = "links">
+                    <div class="link"><a href="#home">Home</a></div>
+                    <div class="link"><a href="#about">About</a></div>
+                    <div class="link"><a href="#skills">Skills</a></div>
+                    <div class="link"><a href="#Projects">Projects</a></div>
+                    <div class="link"><a href="#contact">Contact</a></div>
+                </div>
+                <i class= "fa-solid fa-bars hamburg" onclick="hamburg()"></i>
+        </div>
+            <div class="dropdown">
+                <div class="links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#contact">Contact</a>
+                    <i class = "fa-solid fa-xmark cancel" onclick="cancel()"></i>
+                </div>
+            </div>
+    </nav>
+
+    <section id ="home">
+        <div class="main-container">
+            <div class="image">
+                <img src="https://media.licdn.com/dms/image/v2/D5603AQEpnvx5xURsWQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1724853064545?e=1739404800&v=beta&t=Vfogn7vL58rmL6Z8laKYZEraWPT44Z1Jt238u2Zt40w" 
+                alt = "" height ="100%" width ="100%">
+            </div>
+                <div class="content">
+                    <h1>
+                      Russel Mallari
+                    </h1>
+                        <div class = "typewriter">Software Engineer: In Training<span class = "typewriter-text"></span>
+                            <label for=""><label>
+                        </div>
+                        <p>  I am currently a college student pursuing a degree in Computer Science, with a projected graduation date in the spring of 2026. 
+                            My interest in Computer Science was sparked by the excitement of creating something from scratch through coding. The ability to bring ideas to life and solve complex problems through programming is what truly intrigues me. 
+                            As I continue my studies, I am eager to deepen my knowledge in areas such as software development, artificial intelligence, and data science, with the goal of contributing to innovative technological solutions.
+                        </p>
+                        <!-- introduction^^^ -->
+                         <div class="social-links">
+                            <a href="https://www.linkedin.com/in/russel-mallari" target ="_blank"><i class = "fa-brands fa-linkedin"></i></a>
+                            <a href="https://github.com/rusmallari" target ="_blank"><i class = "fa-brands fa-github"></i></a>
+                        </div>
+                </div>
+        </div>
+    </section>
+
+<!-- About Section Start -->
+
+<section class = "about" id = "about">
+    <div class = "content">
+        <div class = "title"><Span> About Me</span></div>
+        <div class = "about-details">
+            <div class = "center">
+                <div class = "topic"> Here's My Story </div>
+                <p> Background: </p>
+                <p>In 2004, my family moved from Masantol, Pampanga, to California, adjusting to life in a small two-bedroom apartment. As a first-generation college student, I navigated the challenges of a new culture, an unfamiliar educational system, and the pressure to succeed. While many expected me to pursue a medical career, I chose a different path to create better opportunities for myself and my family. This decision, though unconventional, was driven by my desire to forge a unique future.Balancing my academic goals with the responsibility of supporting my family taught me resilience and adaptability. I embraced the difficulties of this transition as chances for personal and professional growth. Over time, I realized that true growth comes from embracing challenges and change. My journey has been one of determination, where I learned to pursue my passions while maintaining my commitment to family, believing that change leads to opportunity.</p>
+                <p> Education: </p>
+                <p>With four years of experience in computer science, I have developed strong proficiency in C++, along with basic knowledge of C#, Java, and Python. I also have foundational skills in HTML, CSS, JavaScript, and SwiftUI, which broaden my technical expertise. This diverse skill set enables me to approach a wide range of programming challenges with flexibility and creativity. My experience allows me to write efficient, scalable code while continuously expanding my skills. This versatility makes me well-equipped to tackle various software development tasks and adapt to new technologies, ensuring effective solutions for different programming needs. </p>
+                <p> Skills: </p>
+                <p>Throughout my college career, I have gained valuable experience working in team settings. I have collaborated effectively on various assignments, such as creating software design presentations, maintaining connections, and ensuring smooth communication within the group. My ability to contribute ideas, support team efforts, and adapt to different perspectives has strengthened my teamwork skills. I am comfortable working with diverse groups and managing differing opinions to achieve common goals. These experiences have taught me the importance of collaboration, adaptability, and clear communication—skills that are essential for successful teamwork and project success. </p>
+                <p> Hobbies: </p>
+                <p>One of my main hobbies is going to the gym, as I believe physical well-being is just as important as mental well-being. Exercise is a key part of my routine, bringing me both enjoyment and a sense of fulfillment. I also love hiking, which serves as an excellent stress-reliever. Completing a challenging trail provides a strong sense of accomplishment. I appreciate that hiking can be done in a group, allowing me to connect with others while enjoying nature. Both activities are essential for maintaining balance in my life, supporting my overall health and well-being. </p>
+                <div class = "button">
+                    <button> Resume </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- My Skills Section Start --> 
+<section class="skills" id="skills">
+<div class="content">
+    <div class ="title"><span>My Skills</span></div>
+    <div class="skills-details">
+        <div class="text">
+            <div class="topic">
+                Technical / Non-technical Skills
+            </div>
+                <p>Technical Skills: </p>
+                <p>Web development - I possess fundamental web development abilities, such as an understanding of HTML, CSS, and JavaScript. Despite my lack of expertise, I have worked with frameworks like SwiftUI and am aware with the fundamentals of website development.I'm excited to take on more challenging web development projects and broaden my knowledge in this field.</p>
+                <p>Software design - I am well-versed in the fundamentals of software design, including system architecture, design patterns, and object-oriented programming (OOP). These ideas have been used by me when creating software solutions in Python and C++. My goal is to become more proficient in developing software that is scalable, effective, and maintained.</p>
+                <p>Microsoft Office - I know how to use Word, Excel, PowerPoint, and Outlook in Microsoft Office. I am proficient in spreadsheet management, document creation and editing, presentation design, and effective email and schedule management. My proficiency with these technologies improves my capacity to carry out a variety of organizational and administrative duties efficiently.</p>
+                <p>Non-technical Skills: </p>
+                <p>Ability to learn - I can quickly learn and adapt to new technology and processes. My expertise with multiple programming languages such as (C#, C++, Java, Python) and tools illustrate my ability to absorb and apply complicated concepts efficiently. I am excited to continue expanding my knowledge and taking on new challenges in order to advance my career.</p>
+                <p>Communication - I excel in team communication, creating a collaborative environment in which ideas are freely exchanged and feedback is encouraged. I actively listen to my teammates, provide clear updates, and ensure that everyone is on the same page about goals and assignments. This method improves productivity and team dynamics while reaching common goals.</p>
+        </div>
+        <div class="boxes">
+            <div class="box">
+                <div class="topic">HTML</div>
+                <div class="per">10%</div>
+            </div>
+            <div class="box">
+                <div class="topic">CSS</div>
+                <div class="per">10%</div>
+            </div>
+            <div class="box">
+                <div class="topic">C++</div>
+                <div class="per">65%</div>
+            </div>
+            <div class="box">
+                <div class="topic">C#</div>
+                <div class="per">30%</div>
+            </div>
+            <div class="box">
+                    <div class="topic">Python</div>
+                    <div class="per">50%</div>
+            </div>
+            <div class="box">
+                <div class="topic">SwiftUI</div>
+                <div class="per">10%</div>
+            </div>
+            <div class="box">
+                <div class="topic">Java</div>
+                <div class="per">50%</div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- My Projects Section Start --> 
+<section class="Projects" id="Projects">
+    <div class="content">
+        <div class ="title"><span>My Projects</span></div>
+            <div class="boxes">
+                <div class="box">
+                    <div class="icon"></div>
+                    <i class = "fas fa-desktop"></i>
+                    <div class="topic"> Portfolio </div>
+                    <p> Description: 
+                        to create a responsive website Portfolio, that displays information about myself, past achievements, current goals, etc. </p>
+                    <p>Technologies Used: 
+                        The technologies used were Visual Studio Code (VSCode), a code editor that supports multiple programming languages, with features like syntax highlighting, debugging, and extensions.
+                        
+                        HTML (HyperText Markup Language) is used to create and structure a website. It defines the structure and organization of a webpage.
+                        
+                        CSS (Cascading Style Sheets) is used to style HTML content, control layout, colors, fonts, and more. It helps separate content from design, allowing customization of webpage appearance.</p>
+                    <p>Challenges Faced:
+                        My job conflicted with the class hours significantly, I had to learn how HTML, CSS, and Javascript worked on my own via the help of the internet. 
+                        Although the internet has a vast amount of knowledge it’s not very intuitive for beginners to learn. 
+                    </p>
+                </div>
+            </div>
+    </div>
+</section>
+
+<!-- My Contact Section Start -->
+ <section class="Contact" id="contact">
+    <div class="content">
+        <div class ="title"><span>Contact Information</span></div>
+        <div class="text">
+            <div class="topic">Have any Projects?</div>
+            <div class="button">
+                <a href="mailto:rusmallari@gmail.com"><button>Contact</button></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Footer Section Start -->
+ <footer>
+    <div class="text">
+        <span> Created By Russel Mallari</span>
+    </div>
+</footer>
+    <script src="script.js"></script>
+</body>
+</html>
