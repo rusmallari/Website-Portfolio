@@ -138,6 +138,7 @@ section{
     min-height: 90vh;
 }
 
+/*home page section*/
 section .main-container{
     display: flex;
     justify-content: space-between;
@@ -146,8 +147,7 @@ section .main-container{
 }
 
 .main-container .image{
-    width: 40vw;
-    height: 80vh;
+    height: auto;
     border-radius: 100%;
     overflow: hidden;
     box-shadow: 0 0 50px gray;
@@ -166,14 +166,9 @@ section .main-container{
     font-size: clamp(1rem, 0rem + 100vw, 2.1875rem);
 }
 
-.content .typewriter{
+.content .tag_line{
     font-size: clamp(1rem, 0rem + 80vw, 2.1875rem);
     font-weight: 600;
-}
-
-.content .typewriter-text{
-    color: gray;
-    text-shadow: 0 0 10px gray;
 }
 
 .content p{
@@ -495,10 +490,6 @@ footer .text span{
 
     .main-container .content{
         width: 80%;
-    }
-
-    .main-container button{
-        margin-top: 15px;
     }
 
     .skills-details .per{
