@@ -4,16 +4,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const dropdown = document.querySelector('.dropdown');
 
     hamburger.addEventListener('click', function() {
-        dropdown.style.transform = 'translateY(0px)'; // Show the dropdown
-        hamburger.style.opacity = '0'; // Hide hamburger
-        cancel.style.opacity = '1'; // Show cancel button
-        cancel.style.pointerEvents = 'auto'; // Enable cancel button
+        dropdown.style.transform = 'translateY(0px)';
+        hamburger.style.opacity = '0';
+        cancel.style.opacity = '1';
+        cancel.style.pointerEvents = 'auto';
     });
 
     cancel.addEventListener('click', function() {
-        dropdown.style.transform = 'translateY(-500px)'; // Hide the dropdown
-        hamburger.style.opacity = '1'; // Show hamburger again
-        cancel.style.opacity = '0'; // Hide cancel button
-        cancel.style.pointerEvents = 'none'; // Disable cancel button
+        dropdown.style.transform = 'translateY(-500px)';
+        hamburger.style.opacity = '1';
+        cancel.style.opacity = '0';
+        cancel.style.pointerEvents = 'none';
     });
 });
