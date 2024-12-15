@@ -11,4 +11,4 @@ then relaunch
 
 or 
 
-https://675e5948e1536c07e1eb1755--peaceful-palmier-50c555.netlify.app/#Projects
+https://675e5948e1536c07e1eb1755--peaceful-palmier-50c555.netlify.app/#home
