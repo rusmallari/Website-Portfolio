@@ -1,6 +1,4 @@
-# Website-Portfolio
-
-# Russel Mallari Portfolio 🌐
+# Russel Mallari Portfolio
 
 This is my personal **website portfolio**, built to showcase my projects, skills, and experience as a web developer. The website demonstrates my ability to create responsive and interactive web applications with modern web technologies.
 
