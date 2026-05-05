@@ -2,7 +2,7 @@
 
 This is my personal **website portfolio**, built to showcase my projects, skills, and experience as a web developer. The website demonstrates my ability to create responsive and interactive web applications with modern web technologies.
 
-**🔗 Live Site:** [https://675e5948e1536c07e1eb1755--peaceful-palmier-50c555.netlify.app/#home](https://675e5ac3f3f3bd0008b9133b--peaceful-palmier-50c555.netlify.app/)
+**🔗 Live Site:** [https://peaceful-palmier-50c555.netlify.app/)
 
 ---
 
