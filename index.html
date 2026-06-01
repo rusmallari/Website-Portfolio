@@ -1,190 +1,477 @@
 <!DOCTYPE html>
-<html lang = "en" dir="ltr">
-    <head>
-        <meta charset = "UTF-8">
-        <title> Website Portfolio </title>
-        <link rel="stylesheet" href="style.css"> </link>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"> </link>
-        <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
-    </head>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <title>Russel Mallari — Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --bg2: #11111a;
+      --bg3: #181824;
+      --accent: #5b8fff;
+      --accent2: #a78bfa;
+      --text: #e8e8f0;
+      --muted: #8888a8;
+      --border: rgba(255,255,255,0.07);
+      --card: rgba(255,255,255,0.03);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.2rem 6vw;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800; font-size: 1.15rem;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .hamburger { display: none; cursor: pointer; color: var(--text); font-size: 1.4rem; }
+    .mobile-menu {
+      display: none; flex-direction: column; gap: 1.2rem;
+      position: fixed; top: 0; right: 0; bottom: 0; width: 70vw; max-width: 300px;
+      background: var(--bg2); padding: 5rem 2rem 2rem;
+      border-left: 1px solid var(--border); z-index: 99;
+      transform: translateX(100%); transition: transform 0.3s ease;
+    }
+    .mobile-menu.open { transform: translateX(0); display: flex; }
+    .mobile-menu a { color: var(--text); text-decoration: none; font-size: 1.1rem; font-weight: 500; }
+    .close-menu { position: absolute; top: 1.5rem; right: 1.5rem; cursor: pointer; font-size: 1.4rem; color: var(--muted); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .mobile-menu { display: flex; }
+    }
+
+    #home {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 8rem 6vw 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; width: 100%;
+    }
+    .hero-text h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800; line-height: 1.05;
+      letter-spacing: -0.03em; margin-bottom: 1rem;
+    }
+    .hero-text h1 span {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-tagline { font-size: 1rem; color: var(--muted); margin-bottom: 1.5rem; font-weight: 300; letter-spacing: 0.05em; text-transform: uppercase; }
+    .hero-desc { color: #b0b0cc; font-size: 1rem; margin-bottom: 2rem; max-width: 480px; }
+    .hero-badges { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2.2rem; }
+    .badge { padding: 0.3rem 0.9rem; border-radius: 999px; font-size: 0.78rem; font-weight: 500; border: 1px solid var(--border); color: var(--muted); background: var(--card); }
+    .badge.cert { border-color: rgba(91,143,255,0.4); color: var(--accent); background: rgba(91,143,255,0.08); }
+    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn { padding: 0.75rem 1.8rem; border-radius: 8px; font-size: 0.9rem; font-weight: 600; text-decoration: none; transition: all 0.2s; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+    .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; border: none; }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+    .hero-image { display: flex; justify-content: center; align-items: center; }
+    .hero-image img { width: min(360px, 100%); border-radius: 20px; border: 2px solid var(--border); box-shadow: 0 0 80px rgba(91,143,255,0.12); }
+    .social-row { display: flex; gap: 1rem; margin-top: 1.5rem; }
+    .social-row a { color: var(--muted); font-size: 1.3rem; transition: color 0.2s; text-decoration: none; }
+    .social-row a:hover { color: var(--accent); }
+    .blob { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; opacity: 0.18; }
+    .blob1 { width: 500px; height: 500px; background: var(--accent); top: -100px; right: -100px; }
+    .blob2 { width: 400px; height: 400px; background: var(--accent2); bottom: -100px; left: -100px; }
+
+    @media (max-width: 768px) {
+      .hero-grid { grid-template-columns: 1fr; text-align: center; }
+      .hero-image { order: -1; }
+      .hero-image img { width: 200px; border-radius: 50%; }
+      .hero-badges, .hero-buttons, .social-row { justify-content: center; }
+      .hero-desc { margin: 0 auto 2rem; }
+    }
+
+    section { padding: 6rem 6vw; }
+    .section-label { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+    .section-title { font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 3rem; line-height: 1.15; }
+    .section-title span { background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .max-w { max-width: 1100px; margin: 0 auto; }
+
+    #about { background: var(--bg2); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .about-story p { color: #b0b0cc; margin-bottom: 1rem; }
+    .about-facts { display: flex; flex-direction: column; gap: 1.2rem; }
+    .fact-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem 1.5rem; display: flex; gap: 1rem; align-items: flex-start; }
+    .fact-icon { font-size: 1.3rem; margin-top: 0.1rem; }
+    .fact-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.2rem; }
+    .fact-desc { color: var(--muted); font-size: 0.85rem; }
+    @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
+
+    #skills { background: var(--bg); }
+    .skills-categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+    .skill-category { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; }
+    .skill-category h3 { font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .skill-tag { padding: 0.3rem 0.75rem; border-radius: 6px; font-size: 0.8rem; font-weight: 500; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--text); }
+
+    #projects { background: var(--bg2); }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+    .project-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 1.8rem; transition: border-color 0.2s, transform 0.2s; display: flex; flex-direction: column; }
+    .project-card:hover { border-color: rgba(91,143,255,0.4); transform: translateY(-3px); }
+    .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; }
+    .project-icon { font-size: 1.5rem; }
+    .project-links { display: flex; gap: 0.75rem; }
+    .project-links a { color: var(--muted); font-size: 1rem; text-decoration: none; transition: color 0.2s; }
+    .project-links a:hover { color: var(--accent); }
+    .project-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 0.5rem; }
+    .project-desc { color: #9090b0; font-size: 0.875rem; margin-bottom: 1.2rem; flex: 1; }
+    .project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .stack-tag { padding: 0.2rem 0.6rem; border-radius: 5px; font-size: 0.75rem; background: rgba(91,143,255,0.1); color: var(--accent); border: 1px solid rgba(91,143,255,0.2); }
+
+    #certifications { background: var(--bg); }
+    .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; }
+    .cert-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; display: flex; gap: 1rem; align-items: center; }
+    .cert-icon { font-size: 2rem; }
+    .cert-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; }
+    .cert-status { font-size: 0.8rem; margin-top: 0.2rem; }
+    .cert-status.done { color: #4ade80; }
+    .cert-status.progress { color: #fbbf24; }
+
+    #contact { background: var(--bg2); text-align: center; }
+    .contact-inner { max-width: 600px; margin: 0 auto; }
+    .contact-inner p { color: var(--muted); margin-bottom: 2rem; }
+    .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+
+    footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--border); background: var(--bg); }
+
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
 <body>
 
-     <!-- navigation menu -->
-    <nav>
-        <div class = "nav-container">
-            <div class = "logo">
-                <span>Russel Mallari's Portfolio</span>
-            </div>
-                <div class = "links">
-                    <div class="link"><a href="#home">Home</a></div>
-                    <div class="link"><a href="#about">About</a></div>
-                    <div class="link"><a href="#skills">Skills</a></div>
-                    <div class="link"><a href="#Projects">Projects</a></div>
-                    <div class="link"><a href="#contact">Contact</a></div>
-                </div>
-                <i class= "fa-solid fa-bars hamburg" onclick="hamburg()"></i>
-        </div>
-            <div class="dropdown">
-                <div class="links">
-                    <a href="#home">Home</a>
-                    <a href="#about">About</a>
-                    <a href="#skills">Skills</a>
-                    <a href="#Projects">Projects</a>
-                    <a href="#contact">Contact</a>
-                    <i class = "fa-solid fa-xmark cancel" onclick="cancel()"></i>
-                </div>
-            </div>
-    </nav>
+<nav>
+  <div class="nav-logo">Russel Mallari</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <i class="fa-solid fa-bars hamburger" onclick="toggleMenu()"></i>
+</nav>
 
-    <section id ="home">
-        <div class="main-container">
-            <div class="image">
-                <img src="https://media.licdn.com/dms/image/v2/D5603AQEpnvx5xURsWQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1724853064545?e=1739404800&v=beta&t=Vfogn7vL58rmL6Z8laKYZEraWPT44Z1Jt238u2Zt40w" 
-                alt = "" height ="100%" width ="100%">
-            </div>
-                <div class="content">
-                    <h1>
-                      Russel Mallari
-                    </h1>
-                        <div class = "tag_line">Software Engineer: In Training<label for=""><label>
-                        </div>
-                        <p>  I am currently a college student pursuing a degree in Computer Science, with a projected graduation date in the spring of 2026. 
-                            My interest in Computer Science was sparked by the excitement of creating something from scratch through coding. The ability to bring ideas to life and solve complex problems through programming is what truly intrigues me. 
-                            As I continue my studies, I am eager to deepen my knowledge in areas such as software development, artificial intelligence, and data science, with the goal of contributing to innovative technological solutions.
-                        </p>
-                        <!-- introduction^^^ -->
-                         <div class="social-links">
-                            <a href="https://www.linkedin.com/in/russel-mallari-3014641b8" target ="_blank"><i class = "fa-brands fa-linkedin"></i></a>
-                            <a href="https://github.com/rusmallari" target ="_blank"><i class = "fa-brands fa-github"></i></a>
-                        </div>
-                </div>
-        </div>
-    </section>
-
-<!-- About Section Start -->
-
-<section class = "about" id = "about">
-    <div class = "content">
-        <div class = "title"><Span> About Me</span></div>
-        <div class = "about-details">
-            <div class = "center">
-                <div class = "topic"> Here's My Story </div>
-                <p> Background: </p>
-                <p>In 2004, my family moved from Masantol, Pampanga, to California, adjusting to life in a small two-bedroom apartment. As a first-generation college student, I navigated the challenges of a new culture, an unfamiliar educational system, and the pressure to succeed. While many expected me to pursue a medical career, I chose a different path to create better opportunities for myself and my family. This decision, though unconventional, was driven by my desire to forge a unique future.Balancing my academic goals with the responsibility of supporting my family taught me resilience and adaptability. I embraced the difficulties of this transition as chances for personal and professional growth. Over time, I realized that true growth comes from embracing challenges and change. My journey has been one of determination, where I learned to pursue my passions while maintaining my commitment to family, believing that change leads to opportunity.</p>
-                <p> Education: </p>
-                <p>With four years of experience in computer science, I have developed strong proficiency in C++, along with basic knowledge of C#, Java, and Python. I also have foundational skills in HTML, CSS, JavaScript, and SwiftUI, which broaden my technical expertise. This diverse skill set enables me to approach a wide range of programming challenges with flexibility and creativity. My experience allows me to write efficient, scalable code while continuously expanding my skills. This versatility makes me well-equipped to tackle various software development tasks and adapt to new technologies, ensuring effective solutions for different programming needs. </p>
-                <p> Skills: </p>
-                <p>Throughout my college career, I have gained valuable experience working in team settings. I have collaborated effectively on various assignments, such as creating software design presentations, maintaining connections, and ensuring smooth communication within the group. My ability to contribute ideas, support team efforts, and adapt to different perspectives has strengthened my teamwork skills. I am comfortable working with diverse groups and managing differing opinions to achieve common goals. These experiences have taught me the importance of collaboration, adaptability, and clear communication—skills that are essential for successful teamwork and project success. </p>
-                <p> Hobbies: </p>
-                <p>One of my main hobbies is going to the gym, as I believe physical well-being is just as important as mental well-being. Exercise is a key part of my routine, bringing me both enjoyment and a sense of fulfillment. I also love hiking, which serves as an excellent stress reliever. Completing a challenging trail provides a strong sense of accomplishment. I appreciate that hiking can be done in a group, allowing me to connect with others while enjoying nature. Both activities are essential for maintaining balance in my life, supporting my overall health and well-being. </p>
-                <div class = "button">
-                    <a href="https://docs.google.com/document/d/1mmWhZF68sa7nUnB-NB352wdYhlkzhD8mF1rQhQzuhUA/edit?usp=sharing">
-                    <button> Resume </button>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- My Skills Section Start --> 
-<section class="skills" id="skills">
-<div class="content">
-    <div class ="title"><span>My Skills</span></div>
-    <div class="skills-details">
-        <div class="text">
-            <div class="topic">
-                Technical / Non-technical Skills
-            </div>
-                <p>Technical Skills: </p>
-                <p>Web development - I possess fundamental web development abilities, such as an understanding of HTML, CSS, and JavaScript. Despite my lack of expertise, I have worked with frameworks like SwiftUI and know the fundamentals of website development. I'm excited to take on more challenging web development projects and broaden my knowledge in this field.</p>
-                <p>Software design - I am well-versed in the fundamentals of software design, including system architecture, design patterns, and object-oriented programming (OOP). I have used these ideas when creating software solutions in Python and C++. I aim to become more proficient in developing scalable, effective, and maintained software.</p>
-                <p>Microsoft Office - I know how to use Word, Excel, PowerPoint, and Outlook in Microsoft Office. I am proficient in spreadsheet management, document creation and editing, presentation design, and effective email and schedule management. My proficiency with these technologies improves my capacity to carry out a variety of organizational and administrative duties efficiently.</p>
-                <p>Non-technical Skills: </p>
-                <p>Ability to learn - I can quickly learn and adapt to new technology and processes. My expertise with multiple programming languages such as (C#, C++, Java, and Python) and tools illustrate my ability to absorb and apply complicated concepts efficiently. I am excited to continue expanding my knowledge and taking on new challenges in order to advance my career.</p>
-                <p>Communication - I excel in team communication, creating a collaborative environment in which ideas are freely exchanged and feedback is encouraged. I actively listen to my teammates, provide clear updates, and ensure that everyone is on the same page about goals and assignments. This method improves productivity and team dynamics while reaching common goals.</p>
-        </div>
-        <div class="boxes">
-            <div class="box">
-                <div class="topic">HTML</div>
-                <div class="per">10%</div>
-            </div>
-            <div class="box">
-                <div class="topic">CSS</div>
-                <div class="per">10%</div>
-            </div>
-            <div class="box">
-                <div class="topic">C++</div>
-                <div class="per">65%</div>
-            </div>
-            <div class="box">
-                <div class="topic">C#</div>
-                <div class="per">30%</div>
-            </div>
-            <div class="box">
-                    <div class="topic">Python</div>
-                    <div class="per">50%</div>
-            </div>
-            <div class="box">
-                <div class="topic">SwiftUI</div>
-                <div class="per">10%</div>
-            </div>
-            <div class="box">
-                <div class="topic">Java</div>
-                <div class="per">50%</div>
-            </div>
-        </div>
-    </div>
+<div class="mobile-menu" id="mobileMenu">
+  <i class="fa-solid fa-xmark close-menu" onclick="toggleMenu()"></i>
+  <a href="#home" onclick="toggleMenu()">Home</a>
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#skills" onclick="toggleMenu()">Skills</a>
+  <a href="#projects" onclick="toggleMenu()">Projects</a>
+  <a href="#certifications" onclick="toggleMenu()">Certifications</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
 </div>
-</section>
 
-<!-- My Projects Section Start --> 
-<section class="Projects" id="Projects">
-    <div class="content">
-        <div class ="title"><span>My Projects</span></div>
-            <div class="boxes">
-                <div class="box">
-                    <div class="topic"> Portfolio </div>
-                    <p>Description:</p> 
-                    <p>To create a responsive website Portfolio, that displays information about myself, past achievements, current goals, etc. </p>
-                    <p>Technologies Used:</p>
-                    <p>The technologies used were Visual Studio Code (VSCode), a code editor that supports multiple programming languages, with features like syntax highlighting, debugging, and extensions.
-                        HTML (HyperText Markup Language) is used to create and structure a website. It defines the structure and organization of a webpage. HTML is the "skeleton" of designing the website. 
-                        This provides all the essential information, your website contains such as the titles, information, and buttons.
-                        CSS (Cascading Style Sheets) is used to style HTML content, control layout, colors, fonts, and more. It helps separate content from design, allowing customization of webpage appearance.
-                        CSS is more for appearance, it gives the page more characteristics to it.
-                        Javascript adds fluidity, to a website, adding interactivity such as the button's actions. Javascript although, it didn't play a major role in this project specifically, it plays an essential in responsivity within a website.
-                    </p>
-
-                    <p>Challenges Faced:</p>
-                    <p>When I first started learning HTML, CSS, and JavaScript, my work schedule clashed with my class hours, making it hard to learn and comprehend new topics. As a result, I looked to the internet for help. The internet has such a vast amount of information regarding any topic. But because there is so much information, i wasn't sure where to start.
-                    The internet and a classroom environment are two completely different methods of learning. Unlike classroom environments, where topics are taught in progression in learning, the internet often lacks a clear learning route. I easily got lost in all the technical language for example font-sizes like em, px, rem, and clamps.
-                    </p>
-                </div>
-            </div>
+<section id="home">
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="hero-grid max-w">
+    <div class="hero-text fade-in">
+      <p class="hero-tagline">Software Engineer & Cybersecurity</p>
+      <h1>Hi, I'm <span>Russel Mallari</span></h1>
+      <p class="hero-desc">CS student at Cal State Fullerton building real-world systems at the intersection of software engineering and cybersecurity. CompTIA Security+ certified.</p>
+      <div class="hero-badges">
+        <span class="badge cert">🛡️ CompTIA Security+</span>
+        <span class="badge">CySA+ In Progress</span>
+        <span class="badge">Splunk In Progress</span>
+        <span class="badge">CSUF 2027</span>
+      </div>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-outline">Contact Me</a>
+      </div>
+      <div class="social-row">
+        <a href="https://www.linkedin.com/in/russel-mallari" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://github.com/rusmallari" target="_blank"><i class="fa-brands fa-github"></i></a>
+        <a href="mailto:russelacmallari@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+      </div>
     </div>
+    <div class="hero-image fade-in">
+      <img src="https://media.licdn.com/dms/image/v2/D5603AQEpnvx5xURsWQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1724853064545?e=1739404800&v=beta&t=Vfogn7vL58rmL6Z8laKYZEraWPT44Z1Jt238u2Zt40w" alt="Russel Mallari">
+    </div>
+  </div>
 </section>
 
-<!-- My Contact Section Start -->
- <section class="Contact" id="contact">
-    <div class="content">
-        <div class ="title"><span>Contact Information</span></div>
-        <div class="text">
-            <div class="topic">Have any Projects?</div>
-            <div class="button">
-                <a href="mailto:rusmallari@gmail.com"><button>Contact</button></a>
-            </div>
+<section id="about">
+  <div class="max-w fade-in">
+    <p class="section-label">Background</p>
+    <h2 class="section-title">About <span>Me</span></h2>
+    <div class="about-grid">
+      <div class="about-story">
+        <p>In 2002, my family moved from Masantol, Pampanga to California — adjusting to life in a small two-bedroom apartment. As a first-generation college student, I navigated a new culture, an unfamiliar education system, and the pressure to succeed.</p>
+        <p>While many expected me to pursue medicine, I chose Computer Science. What fascinated me most was how fast computers learn and adapt — and that curiosity hasn't stopped since. I chose a path where I could build things that actually solve problems.</p>
+        <p>Balancing academics with supporting my family taught me resilience. I learned that real growth comes from embracing challenges, not avoiding them. That mindset shows up in everything I build.</p>
+        <p>Outside of code I stay balanced through the gym and hiking — both keep me sharp and grounded.</p>
+      </div>
+      <div class="about-facts">
+        <div class="fact-card">
+          <div class="fact-icon">🎓</div>
+          <div>
+            <div class="fact-title">Cal State Fullerton</div>
+            <div class="fact-desc">B.S. Computer Science — Expected May 2027 · GPA 3.0</div>
+          </div>
         </div>
+        <div class="fact-card">
+          <div class="fact-icon">🏫</div>
+          <div>
+            <div class="fact-title">Cypress College</div>
+            <div class="fact-desc">A.S. Computer Science — Transferred May 2023 · GPA 3.0</div>
+          </div>
+        </div>
+        <div class="fact-card">
+          <div class="fact-icon">📍</div>
+          <div>
+            <div class="fact-title">Location</div>
+            <div class="fact-desc">Orange County, California</div>
+          </div>
+        </div>
+        <div class="fact-card">
+          <div class="fact-icon">🎯</div>
+          <div>
+            <div class="fact-title">Open To</div>
+            <div class="fact-desc">Internships in Software Engineering & Cybersecurity</div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
 
-
-<!-- Footer Section Start -->
- <footer>
-    <div class="text">
-        <span> Created By Russel Mallari</span>
+<section id="skills">
+  <div class="max-w fade-in">
+    <p class="section-label">Technical Stack</p>
+    <h2 class="section-title">My <span>Skills</span></h2>
+    <div class="skills-categories">
+      <div class="skill-category">
+        <h3>Languages</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">C++</span>
+          <span class="skill-tag">C#</span>
+          <span class="skill-tag">C</span>
+          <span class="skill-tag">Swift</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h3>Web & Backend</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">HTML</span>
+          <span class="skill-tag">CSS</span>
+          <span class="skill-tag">MySQL</span>
+          <span class="skill-tag">REST APIs</span>
+          <span class="skill-tag">Firebase</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h3>Security & Tools</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Wireshark</span>
+          <span class="skill-tag">Cisco Packet Tracer</span>
+          <span class="skill-tag">OpenCV</span>
+          <span class="skill-tag">Splunk</span>
+          <span class="skill-tag">Git</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h3>Concepts</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Network Security</span>
+          <span class="skill-tag">Log Analysis</span>
+          <span class="skill-tag">Incident Response</span>
+          <span class="skill-tag">OOP</span>
+          <span class="skill-tag">System Design</span>
+          <span class="skill-tag">Data Structures</span>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="max-w fade-in">
+    <p class="section-label">What I've Built</p>
+    <h2 class="section-title">My <span>Projects</span></h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">📡</div>
+          <div class="project-links"><a href="https://github.com/rusmallari" target="_blank"><i class="fa-brands fa-github"></i></a></div>
+        </div>
+        <div class="project-name">Network Security Monitoring Lab</div>
+        <div class="project-desc">Designed and simulated a multi-router enterprise network using OSPF routing. Captured and analyzed live traffic with Wireshark to inspect TCP handshakes, DNS queries, and detect anomalies. Implemented firewall access control policies.</div>
+        <div class="project-stack">
+          <span class="stack-tag">Cisco Packet Tracer</span>
+          <span class="stack-tag">Wireshark</span>
+          <span class="stack-tag">OSPF</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">📸</div>
+          <div class="project-links"><a href="https://github.com/rusmallari/Real-Time-Facial-Recognition" target="_blank"><i class="fa-brands fa-github"></i></a></div>
+        </div>
+        <div class="project-name">Real-Time Facial Recognition System</div>
+        <div class="project-desc">Multi-camera computer vision system for real-time identity verification. Fires Windows desktop alerts when a watchlisted person is detected. Logs 100+ detection events with timestamps. Runs 100% on-device.</div>
+        <div class="project-stack">
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">OpenCV</span>
+          <span class="stack-tag">Multithreading</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">📈</div>
+          <div class="project-links"><a href="https://github.com/rusmallari" target="_blank"><i class="fa-brands fa-github"></i></a></div>
+        </div>
+        <div class="project-name">StockWise Investment Platform</div>
+        <div class="project-desc">Full-stack web platform with authentication, user session management, and real-time financial data visualization. Integrated external APIs for stock data retrieval and scalable backend architecture.</div>
+        <div class="project-stack">
+          <span class="stack-tag">React</span>
+          <span class="stack-tag">Node.js</span>
+          <span class="stack-tag">REST APIs</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">💳</div>
+          <div class="project-links"><a href="https://github.com/rusmallari/CS-Calculator" target="_blank"><i class="fa-brands fa-github"></i></a></div>
+        </div>
+        <div class="project-name">FICO-Style Credit Score Calculator</div>
+        <div class="project-desc">Rule-based risk scoring system modeled after FICO metrics. Users input 12 months of financial data and instantly see their estimated credit score on a 300–850 scale with factor-by-factor feedback.</div>
+        <div class="project-stack">
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">JavaScript</span>
+          <span class="stack-tag">Data Analysis</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">💰</div>
+          <div class="project-links"><a href="https://github.com/rusmallari/Budget-Buddy" target="_blank"><i class="fa-brands fa-github"></i></a></div>
+        </div>
+        <div class="project-name">BudgetBuddy Finance Tracker</div>
+        <div class="project-desc">Secure mobile app with Firebase authentication and real-time cloud sync. Tracks categorized transactions with persistent storage across devices. Built to help users make better day-to-day financial decisions.</div>
+        <div class="project-stack">
+          <span class="stack-tag">Swift</span>
+          <span class="stack-tag">Firebase</span>
+          <span class="stack-tag">iOS</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">🔐</div>
+          <div class="project-links"><a href="https://github.com/rusmallari/Password-Security-Analyzer" target="_blank"><i class="fa-brands fa-github"></i></a></div>
+        </div>
+        <div class="project-name">Password Security Analyzer</div>
+        <div class="project-desc">Evaluates password strength across six security criteria — length, complexity, character variety, and special characters. Returns Weak / Medium / Strong ratings with actionable improvement suggestions.</div>
+        <div class="project-stack">
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">Regex</span>
+          <span class="stack-tag">Security</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certifications">
+  <div class="max-w fade-in">
+    <p class="section-label">Credentials</p>
+    <h2 class="section-title">Certifications</h2>
+    <div class="certs-grid">
+      <div class="cert-card">
+        <div class="cert-icon">🛡️</div>
+        <div>
+          <div class="cert-name">CompTIA Security+</div>
+          <div class="cert-status done">✓ Certified</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🔍</div>
+        <div>
+          <div class="cert-name">CompTIA CySA+</div>
+          <div class="cert-status progress">⏳ In Progress</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">📊</div>
+        <div>
+          <div class="cert-name">Splunk Core User</div>
+          <div class="cert-status progress">⏳ In Progress</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="max-w fade-in">
+    <div class="contact-inner">
+      <p class="section-label">Get In Touch</p>
+      <h2 class="section-title">Let's <span>Connect</span></h2>
+      <p>I'm actively looking for internship opportunities in software engineering and cybersecurity. Whether you have a role, a project, or just want to connect — feel free to reach out.</p>
+      <div class="contact-links">
+        <a href="mailto:russelacmallari@gmail.com" class="btn btn-primary"><i class="fa-solid fa-envelope"></i> &nbsp;Email Me</a>
+        <a href="https://www.linkedin.com/in/russel-mallari" target="_blank" class="btn btn-outline"><i class="fa-brands fa-linkedin"></i> &nbsp;LinkedIn</a>
+        <a href="https://github.com/rusmallari" target="_blank" class="btn btn-outline"><i class="fa-brands fa-github"></i> &nbsp;GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Built by Russel Mallari · Orange County, CA</span>
 </footer>
-    <script src="script.js"></script>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
 </body>
 </html>
