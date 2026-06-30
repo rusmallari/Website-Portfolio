@@ -11,7 +11,6 @@ My portfolio highlights my work in web development, software engineering, and pe
 - HTML
 - CSS
 - JavaScript
-- React
 
 ## Features
 - Responsive design for all devices
