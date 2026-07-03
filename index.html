@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Russel Mallari — Portfolio</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+--bg: #0a0a0f;
+--bg2: #11111a;
+--accent: #5b8fff;
+--accent2: #a78bfa;
+--text: #e8e8f0;
+--muted: #8888a8;
+--border: rgba(255,255,255,0.07);
+--card: rgba(255,255,255,0.03);
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.7; overflow-x: hidden; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.2rem 6vw; display: flex; align-items: center; justify-content: space-between; background: rgba(10,10,15,0.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+.nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover { color: var(--text); }
+.hamburger { display: none; cursor: pointer; color: var(--text); font-size: 1.4rem; }
+.mobile-menu { display: none; flex-direction: column; gap: 1.2rem; position: fixed; top: 0; right: 0; bottom: 0; width: 70vw; max-width: 300px; background: var(--bg2); padding: 5rem 2rem 2rem; border-left: 1px solid var(--border); z-index: 99; transform: translateX(100%); transition: transform 0.3s ease; }
+.mobile-menu.open { transform: translateX(0); display: flex; }
+.mobile-menu a { color: var(--text); text-decoration: none; font-size: 1.1rem; font-weight: 500; }
+.close-menu { position: absolute; top: 1.5rem; right: 1.5rem; cursor: pointer; font-size: 1.4rem; color: var(--muted); }
+@media (max-width: 768px) { .nav-links { display: none; } .hamburger { display: block; } .mobile-menu { display: flex; } }
+#home { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 8rem 6vw 4rem; position: relative; overflow: hidden; text-align: center; }
+.hero-inner { max-width: 700px; }
+.hero-inner h1 { font-family: 'Syne', sans-serif; font-size: clamp(2.8rem, 7vw, 5rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 1rem; }
+.hero-inner h1 span { background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero-tagline { font-size: 1rem; color: var(--muted); margin-bottom: 1.5rem; font-weight: 300; letter-spacing: 0.05em; text-transform: uppercase; }
+.hero-desc { color: #b0b0cc; font-size: 1.05rem; margin-bottom: 2rem; }
+.hero-badges { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2.2rem; justify-content: center; }
+.badge { padding: 0.3rem 0.9rem; border-radius: 999px; font-size: 0.78rem; font-weight: 500; border: 1px solid var(--border); color: var(--muted); background: var(--card); }
+.badge.cert { border-color: rgba(91,143,255,0.4); color: var(--accent); background: rgba(91,143,255,0.08); }
+.hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+.btn { padding: 0.75rem 1.8rem; border-radius: 8px; font-size: 0.9rem; font-weight: 600; text-decoration: none; transition: all 0.2s; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+.btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; border: none; }
+.btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.social-row { display: flex; gap: 1rem; margin-top: 1.5rem; justify-content: center; }
+.social-row a { color: var(--muted); font-size: 1.3rem; transition: color 0.2s; text-decoration: none; }
+.social-row a:hover { color: var(--accent); }
+.blob { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; opacity: 0.18; }
+.blob1 { width: 500px; height: 500px; background: var(--accent); top: -100px; right: -100px; }
+.blob2 { width: 400px; height: 400px; background: var(--accent2); bottom: -100px; left: -100px; }
+section { padding: 6rem 6vw; }
+.section-label { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+.section-title { font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 3rem; line-height: 1.15; }
+.section-title span { background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.max-w { max-width: 1100px; margin: 0 auto; }
+#about { background: var(--bg2); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.about-story p { color: #b0b0cc; margin-bottom: 1rem; }
+.about-facts { display: flex; flex-direction: column; gap: 1.2rem; }
+.fact-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem 1.5rem; display: flex; gap: 1rem; align-items: flex-start; }
+.fact-icon { font-size: 1.3rem; margin-top: 0.1rem; }
+.fact-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.2rem; }
+.fact-desc { color: var(--muted); font-size: 0.85rem; }
+@media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
+#skills { background: var(--bg); }
+.skills-categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+.skill-category { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; }
+.skill-category h3 { font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+.skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.skill-tag { padding: 0.3rem 0.75rem; border-radius: 6px; font-size: 0.8rem; font-weight: 500; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--text); }
+#projects { background: var(--bg2); }
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+.project-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 1.8rem; transition: border-color 0.2s, transform 0.2s; display: flex; flex-direction: column; }
+.project-card:hover { border-color: rgba(91,143,255,0.4); transform: translateY(-3px); }
+.project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; }
+.project-icon { font-size: 1.5rem; }
+.project-links { display: flex; gap: 0.7rem; }
+.project-links a { color: var(--muted); font-size: 1rem; text-decoration: none; transition: color 0.2s; }
+.project-links a:hover { color: var(--accent); }
+.project-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 0.5rem; }
+.project-desc { color: #9090b0; font-size: 0.875rem; margin-bottom: 1.2rem; flex: 1; }
+.project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.stack-tag { padding: 0.2rem 0.6rem; border-radius: 5px; font-size: 0.75rem; background: rgba(91,143,255,0.1); color: var(--accent); border: 1px solid rgba(91,143,255,0.2); }
+#certifications { background: var(--bg); }
+.certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; }
+.cert-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; display: flex; gap: 1rem; align-items: center; }
+.cert-icon { font-size: 2rem; }
+.cert-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; }
+.cert-status { font-size: 0.8rem; margin-top: 0.2rem; }
+.cert-status.done { color: #4ade80; }
+.cert-status.progress { color: #fbbf24; }
+#contact { background: var(--bg2); text-align: center; }
+.contact-inner { max-width: 600px; margin: 0 auto; }
+.contact-inner p { color: var(--muted); margin-bottom: 2rem; }
+.contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--border); background: var(--bg); }
+.fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+<nav>
+<div class="nav-logo">Russel Mallari</div>
+<ul class="nav-links">
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#certifications">Certifications</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+<i class="fa-solid fa-bars hamburger" onclick="toggleMenu()"></i>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+<i class="fa-solid fa-xmark close-menu" onclick="toggleMenu()"></i>
+<a href="#home" onclick="toggleMenu()">Home</a>
+<a href="#about" onclick="toggleMenu()">About</a>
+<a href="#skills" onclick="toggleMenu()">Skills</a>
+<a href="#projects" onclick="toggleMenu()">Projects</a>
+<a href="#certifications" onclick="toggleMenu()">Certifications</a>
+<a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
+<section id="home">
+<div class="blob blob1"></div>
+<div class="blob blob2"></div>
+<div class="hero-inner fade-in">
+<p class="hero-tagline">Software Engineer & Cybersecurity</p>
+<h1>Hi, I'm <span>Russel Mallari</span></h1>
+<p class="hero-desc">CS student at Cal State Fullerton building real-world systems at the intersection of software engineering and cybersecurity. CompTIA Security+ certified.</p>
+<div class="hero-badges">
+<span class="badge cert">🛡️ CompTIA Security+</span>
+<span class="badge">CySA+ In Progress</span>
+<span class="badge">Splunk Core User In Progress</span>
+<span class="badge">CSUF Dec 2026</span>
+</div>
+<div class="hero-buttons">
+<a href="#projects" class="btn btn-primary">View Projects</a>
+<a href="#contact" class="btn btn-outline">Contact Me</a>
+</div>
+<div class="social-row">
+<a href="https://www.linkedin.com/in/rusmallari" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+<a href="https://github.com/rusmallari" target="_blank"><i class="fa-brands fa-github"></i></a>
+<a href="mailto:russelacmallari@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+</div>
+</div>
+</section>
+<section id="about">
+<div class="max-w fade-in">
+<p class="section-label">Background</p>
+<h2 class="section-title">About <span>Me</span></h2>
+<div class="about-grid">
+<div class="about-story">
+<p>In 2002, my family moved from Masantol, Pampanga to California — adjusting to life in a small two-bedroom apartment. As a first-generation college student, I navigated a new culture, an unfamiliar education system, and the pressure to succeed.</p>
+<p>While many expected me to pursue medicine, I chose Computer Science. What fascinated me most was how fast computers learn and adapt — and that curiosity hasn't stopped since. I chose a path where I could build things that actually solve problems.</p>
+<p>Balancing academics with supporting my family taught me resilience. I learned that real growth comes from embracing challenges, not avoiding them. That mindset shows up in everything I build.</p>
+<p>Outside of code I stay balanced through the gym and hiking — both keep me sharp and grounded.</p>
+</div>
+<div class="about-facts">
+<div class="fact-card">
+<div class="fact-icon">🎓</div>
+<div>
+<div class="fact-title">Cal State Fullerton</div>
+<div class="fact-desc">B.S. Computer Science — Expected December 2026 · GPA 3.0</div>
+</div>
+</div>
+<div class="fact-card">
+<div class="fact-icon">🏫</div>
+<div>
+<div class="fact-title">Cypress College</div>
+<div class="fact-desc">A.S. Computer Science — Transferred May 2023 · GPA 3.0</div>
+</div>
+</div>
+<div class="fact-card">
+<div class="fact-icon">📍</div>
+<div>
+<div class="fact-title">Location</div>
+<div class="fact-desc">Orange County, California</div>
+</div>
+</div>
+<div class="fact-card">
+<div class="fact-icon">🎯</div>
+<div>
+<div class="fact-title">Open To</div>
+<div class="fact-desc">Entry-level SOC Analyst & Cybersecurity roles</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="skills">
+<div class="max-w fade-in">
+<p class="section-label">Technical Stack</p>
+<h2 class="section-title">My <span>Skills</span></h2>
+<div class="skills-categories">
+<div class="skill-category">
+<h3>Languages</h3>
+<div class="skill-tags">
+<span class="skill-tag">Python</span>
+<span class="skill-tag">JavaScript</span>
+<span class="skill-tag">Java</span>
+<span class="skill-tag">C++</span>
+<span class="skill-tag">C#</span>
+<span class="skill-tag">C</span>
+<span class="skill-tag">Swift</span>
+</div>
+</div>
+<div class="skill-category">
+<h3>Web & Backend</h3>
+<div class="skill-tags">
+<span class="skill-tag">React</span>
+<span class="skill-tag">Node.js</span>
+<span class="skill-tag">Flask</span>
+<span class="skill-tag">HTML</span>
+<span class="skill-tag">CSS</span>
+<span class="skill-tag">MySQL</span>
+<span class="skill-tag">REST APIs</span>
+<span class="skill-tag">Firebase</span>
+</div>
+</div>
+<div class="skill-category">
+<h3>Security & Tools</h3>
+<div class="skill-tags">
+<span class="skill-tag">Splunk SPL</span>
+<span class="skill-tag">Wireshark</span>
+<span class="skill-tag">Cisco Packet Tracer</span>
+<span class="skill-tag">OpenCV</span>
+<span class="skill-tag">Hydra</span>
+<span class="skill-tag">Git</span>
+</div>
+</div>
+<div class="skill-category">
+<h3>Concepts</h3>
+<div class="skill-tags">
+<span class="skill-tag">SIEM & Log Analysis</span>
+<span class="skill-tag">Detection Engineering</span>
+<span class="skill-tag">Network Security</span>
+<span class="skill-tag">Incident Response</span>
+<span class="skill-tag">OOP</span>
+<span class="skill-tag">Data Structures</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="projects">
+<div class="max-w fade-in">
+<p class="section-label">What I've Built</p>
+<h2 class="section-title">My <span>Projects</span></h2>
+<div class="projects-grid">
+<div class="project-card">
+<div class="project-header">
+<div class="project-icon">📊</div>
+<div class="project-links"><a href="https://github.com/rusmallari" target="_blank"><i class="fa-brands fa-github"></i></a></div>
+</div>
+<div class="project-name">Splunk SIEM Home Lab</div>
+<div class="project-desc">Built a SIEM environment from scratch on Ubuntu with live auth log ingestion into Splunk Enterprise. Created a four-panel Linux Auth Monitor dashboard, simulated SSH brute-force attacks with Hydra, and wrote a scheduled SPL alert to detect them in real time.</div>
+<div class="project-stack">
+<span class="stack-tag">Splunk</span>
+<span class="stack-tag">SPL</span>
+<span class="stack-tag">Linux</span>
+</div>
+</div>
+<div class="project-card">
+<div class="project-header">
+<div class="project-icon">🎣</div>
+<div class="project-links">
+<a href="https://phishing-email-scanner.onrender.com" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+<a href="https://github.com/rusmallari" target="_blank"><i class="fa-brands fa-github"></i></a>
+</div>
+</div>
+<div class="project-name">Phishing Email Scanner</div>
+<div class="project-desc">A six-module detection engine that scores incoming emails across text, URL, and header-based rules to flag phishing attempts. Built with Flask and deployed live for anyone to test against real email samples.</div>
+<div class="project-stack">
+<span class="stack-tag">Python</span>
+<span class="stack-tag">Flask</span>
+<span class="stack-tag">Detection Engineering</span>
+</div>
+</div>
+<div class="project-card">
+<div class="project-header">
+<div class="project-icon">📡</div>
+<div class="project-links"><a href="https://github.com/rusmallari" target="_blank"><i class="fa-brands fa-github"></i></a></div>
+</div>
+<div class="project-name">Enterprise Network Simulation</div>
+<div class="project-desc">Designed and simulated a multi-router enterprise network with OSPF routing, VLAN segmentation, and ACLs. Captured and analyzed live traffic with Wireshark to inspect TCP handshakes, DNS queries, and detect anomalies.</div>
+<div class="project-stack">
+<span class="stack-tag">Cisco Packet Tracer</span>
+<span class="stack-tag">Wireshark</span>
+<span class="stack-tag">OSPF</span>
+</div>
+</div>
+<div class="project-card">
+<div class="project-header">
+<div class="project-icon">📸</div>
+<div class="project-links"><a href="https://github.com/rusmallari/Real-Time-Facial-Recognition" target="_blank"><i class="fa-brands fa-github"></i></a></div>
+</div>
+<div class="project-name">Multi-Camera Facial Recognition & Alert System</div>
+<div class="project-desc">Multi-camera computer vision system using an LBPH recognizer for real-time identity verification. Fires Windows desktop alerts when a watchlisted person is detected, with multithreaded per-camera processing.</div>
+<div class="project-stack">
+<span class="stack-tag">Python</span>
+<span class="stack-tag">OpenCV</span>
+<span class="stack-tag">Multithreading</span>
+</div>
+</div>
+<div class="project-card">
+<div class="project-header">
+<div class="project-icon">🔐</div>
+<div class="project-links"><a href="https://github.com/rusmallari/Password-Security-Analyzer" target="_blank"><i class="fa-brands fa-github"></i></a></div>
+</div>
+<div class="project-name">Password Security Analyzer</div>
+<div class="project-desc">Tkinter GUI that scores password strength using Shannon entropy and checks exposure against the Have I Been Pwned API via k-anonymity, with a color-coded strength bar and improvement suggestions.</div>
+<div class="project-stack">
+<span class="stack-tag">Python</span>
+<span class="stack-tag">Tkinter</span>
+<span class="stack-tag">Security</span>
+</div>
+</div>
+<div class="project-card">
+<div class="project-header">
+<div class="project-icon">💳</div>
+<div class="project-links"><a href="https://github.com/rusmallari/CS-Calculator" target="_blank"><i class="fa-brands fa-github"></i></a></div>
+</div>
+<div class="project-name">FICO-Style Credit Score Calculator</div>
+<div class="project-desc">Rule-based risk scoring system modeled after FICO metrics. Users input 12 months of financial data and instantly see their estimated credit score on a 300–850 scale with factor-by-factor feedback.</div>
+<div class="project-stack">
+<span class="stack-tag">Python</span>
+<span class="stack-tag">JavaScript</span>
+<span class="stack-tag">Data Analysis</span>
+</div>
+</div>
+<div class="project-card">
+<div class="project-header">
+<div class="project-icon">💰</div>
+<div class="project-links"><a href="https://github.com/rusmallari/Budget-Buddy" target="_blank"><i class="fa-brands fa-github"></i></a></div>
+</div>
+<div class="project-name">BudgetBuddy Finance Tracker</div>
+<div class="project-desc">Secure iOS app with Firebase authentication and real-time cloud sync. Tracks categorized transactions with persistent storage across devices. Built to help users make better day-to-day financial decisions.</div>
+<div class="project-stack">
+<span class="stack-tag">Swift</span>
+<span class="stack-tag">Firebase</span>
+<span class="stack-tag">iOS</span>
+</div>
+</div>
+<div class="project-card">
+<div class="project-header">
+<div class="project-icon">📈</div>
+<div class="project-links"><a href="https://github.com/rusmallari" target="_blank"><i class="fa-brands fa-github"></i></a></div>
+</div>
+<div class="project-name">StockWise Investment Platform</div>
+<div class="project-desc">Full-stack web platform with authentication, user session management, and real-time financial data visualization. Integrated external APIs for stock data retrieval and scalable backend architecture.</div>
+<div class="project-stack">
+<span class="stack-tag">React</span>
+<span class="stack-tag">Node.js</span>
+<span class="stack-tag">REST APIs</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="certifications">
+<div class="max-w fade-in">
+<p class="section-label">Credentials</p>
+<h2 class="section-title">Certifications</h2>
+<div class="certs-grid">
+<div class="cert-card">
+<div class="cert-icon">🛡️</div>
+<div>
+<div class="cert-name">CompTIA Security+</div>
+<div class="cert-status done">✓ Certified</div>
+</div>
+</div>
+<div class="cert-card">
+<div class="cert-icon">🔍</div>
+<div>
+<div class="cert-name">CompTIA CySA+</div>
+<div class="cert-status progress">⏳ In Progress</div>
+</div>
+</div>
+<div class="cert-card">
+<div class="cert-icon">📊</div>
+<div>
+<div class="cert-name">Splunk Core Certified User</div>
+<div class="cert-status progress">⏳ In Progress</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="contact">
+<div class="max-w fade-in">
+<div class="contact-inner">
+<p class="section-label">Get In Touch</p>
+<h2 class="section-title">Let's <span>Connect</span></h2>
+<p>I'm actively looking for entry-level opportunities in cybersecurity and SOC analysis. Whether you have a role, a project, or just want to connect — feel free to reach out.</p>
+<div class="contact-links">
+<a href="mailto:russelacmallari@gmail.com" class="btn btn-primary"><i class="fa-solid fa-envelope"></i> &nbsp;Email Me</a>
+<a href="https://www.linkedin.com/in/rusmallari" target="_blank" class="btn btn-outline"><i class="fa-brands fa-linkedin"></i> &nbsp;LinkedIn</a>
+<a href="https://github.com/rusmallari" target="_blank" class="btn btn-outline"><i class="fa-brands fa-github"></i> &nbsp;GitHub</a>
+</div>
+</div>
+</div>
+</section>
+<footer>
+<span>Built by Russel Mallari · Orange County, CA</span>
+</footer>
+<script>
+function toggleMenu() {
+document.getElementById('mobileMenu').classList.toggle('open');
+}
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
